@@ -1,0 +1,25 @@
+{
+  "name": "berndsblog",
+  "version": "0.1.0",
+  "description": "Projekt für Web Engineering -> Web-API für einen Blog",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PalatinCoder/DieBernds.git"
+  },
+  "author": "Ferdinand Braun, Rico Jambor, Jan Syring-Lingenfelder",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PalatinCoder/DieBernds/issues"
+  },
+  "homepage": "https://github.com/PalatinCoder/DieBernds#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
