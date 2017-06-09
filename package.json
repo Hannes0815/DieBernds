@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/PalatinCoder/DieBernds#readme",
   "dependencies": {
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "jsonwebtoken": "^7.4.1"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
