@@ -27,16 +27,16 @@ Entweder mit [Postman](https://www.getpostman.com/), oder mit der PowerShell: `P
 ##### Login
 * Endpoint: `/login`
 * Parameter:
- * `username`
- * `password`
+  * `username`
+  * `password`
 
  
  ##### Passwort ändern
  * Endpoint: `/passwordRecovery`
  * __Authentifiziert__
  * Parameter:
-  * `password`
-  * `newPassword`
+   * `password`
+   * `newPassword`
   
 #### Blog
 
