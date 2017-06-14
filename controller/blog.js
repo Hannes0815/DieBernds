@@ -1,5 +1,13 @@
+var blog = require('../data/blog.json');
+
 exports.list = function(req, res) {
-  res.send('list');
+  if (res.locals.authenticated) {
+    res.json(blog);
+  } else {
+    res.json(blog.filter((element) => {
+      return !element.hidden;
+    }));
+  }
 }
 
 exports.show = function(req, res) {

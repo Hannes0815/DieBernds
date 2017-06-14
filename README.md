@@ -40,4 +40,8 @@ Entweder mit [Postman](https://www.getpostman.com/), oder mit der PowerShell: `P
   
 #### Blog
 
-TBD
+##### Alle Blogeinträge
+* Endpoint `GET /blog`
+* Authentifizierung:
+  * ja: Alle Blogeinträge werden zurückgegeben
+  * nein: Nur die öffentlichen Blogeinträge werden zurückgegeben
