@@ -55,3 +55,17 @@ Entweder mit [Postman](https://www.getpostman.com/), oder mit der PowerShell: `P
 * Endpoint `DELETE /blog/:id`
 * Authentifizierung
   * Für nicht-öffentliche Blogeinträge muss der Request authentifiziert sein, oder es wird HTTP 401 zurückgegeben.
+
+##### Blogeintrag bearbeiten
+* Endpoint `PUT /blog/:id`
+* Authentifizierung
+  * Für nicht-öffentliche Blogeinträge muss der Request authentifiziert sein, oder es wird HTTP 401 zurückgegeben.
+* Parameter (alle Parameter sind optional, nicht angegebene Attribute werden nicht geändert):
+  * `title`
+  * `picture`
+  * `picture`
+  * `author`
+  * `about`
+  * `released`
+  * `hidden`
+  * `tags[]`
