@@ -1,4 +1,5 @@
 var blog = require('../data/blog.json');
+var fs = require('fs');
 
 exports.list = function(req, res) {
   if (res.locals.authenticated) {
@@ -27,5 +28,23 @@ exports.update = function(req, res) {
 }
 
 exports.delete = function(req, res) {
-  res.send('delete ' + req.params.id);
+  if (!blog[req.params.id]) {
+    res.status(404).send();
+    return;
+  }
+
+  if (!res.locals.authenticated && blog[req.params.id].hidden) {
+    res.status(401).send();
+    return;
+  }
+
+  blog.splice(req.params.id, 1);
+
+  fs.writeFile('./data/blog.json', JSON.stringify(blog), 'utf-8', (err) => {
+    if (err) {
+      res.status(500).json({error: err});
+    } else {
+      res.status(200).send();
+    }
+  });
 }
