@@ -11,7 +11,11 @@ exports.list = function(req, res) {
 }
 
 exports.show = function(req, res) {
-  res.send('show ' + req.params.id);
+  if (!res.locals.authenticated && blog[req.params.id].hidden) {
+    res.status(401).send();
+    return;
+  }
+  res.json(blog[req.params.id]);
 }
 
 exports.create = function(req, res) {

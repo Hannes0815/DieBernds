@@ -45,3 +45,8 @@ Entweder mit [Postman](https://www.getpostman.com/), oder mit der PowerShell: `P
 * Authentifizierung:
   * ja: Alle Blogeinträge werden zurückgegeben
   * nein: Nur die öffentlichen Blogeinträge werden zurückgegeben
+
+##### Bestimmer Blogeintrag
+* Endpoint `GET /blog/:id`
+* Authentifizierung
+  * Für nicht-öffentliche Blogeinträge muss der Request authentifiziert sein, oder es wird HTTP 401 zurückgegeben.
