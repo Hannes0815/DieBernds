@@ -16,6 +16,10 @@ exports.show = function(req, res) {
     res.status(401).send();
     return;
   }
+  if (!blog[req.params.id]) {
+    res.status(404).send();
+    return;
+  }
   res.json(blog[req.params.id]);
 }
 
