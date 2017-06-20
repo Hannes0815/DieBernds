@@ -11,7 +11,10 @@ exports.login = function(req, res) {
   }
 
   // generate token
-  var token = jwt.sign({username: user.username}, 'BerndsGeheimesSignaturSecret!!11');
+  var token = jwt.sign({
+    exp: Math.floor(Date.now() / 1000) + (60 * 60), // 1 hour exipry
+    username: user.username
+  }, 'BerndsGeheimesSignaturSecret!!11');
 
   res.status(200).json({
     token: token
