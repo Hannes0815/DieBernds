@@ -37,6 +37,10 @@ exports.changePassword = function(req, res) {
   }
 
   user.password = req.body.newPassword;
+  var token = jwt.sign({
+    exp: Math.floor(Date.now() / 1000) + (60 * 60), // 1 hour expiry
+    username: user.username
+  }, 'BerndsGeheimesSignaturSecret!!11');
 
 
   var fs = require('fs');
@@ -45,7 +49,7 @@ exports.changePassword = function(req, res) {
     if (err) {
       res.status(500).json({error: err});
     } else {
-      res.status(200).send();
+      res.status(200).send({token: token});
     }
   });
 }
