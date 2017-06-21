@@ -33,7 +33,7 @@ Entweder mit [Postman](https://www.getpostman.com/), oder mit der PowerShell: `P
  
  ##### Passwort ändern
  * Endpoint: `PUT /passwordRecovery`
- * __Authentifiziert__
+ * Authentifizierung: ja
  * Parameter:
    * `password`
    * `newPassword`
@@ -50,3 +50,35 @@ Entweder mit [Postman](https://www.getpostman.com/), oder mit der PowerShell: `P
 * Endpoint `GET /blog/:id`
 * Authentifizierung
   * Für nicht-öffentliche Blogeinträge muss der Request authentifiziert sein, oder es wird HTTP 401 zurückgegeben.
+
+##### Blogeintrag löschen
+* Endpoint `DELETE /blog/:id`
+* Authentifizierung
+  * Für nicht-öffentliche Blogeinträge muss der Request authentifiziert sein, oder es wird HTTP 401 zurückgegeben.
+  
+##### Blogeintrag anlegen
+* Endpoint `POST /blog`
+* Authentifizierung: benötigt
+* Parameter (alle Parameter werden benötigt)
+  * `title`
+  * `picture`
+  * `picture`
+  * `author`
+  * `about`
+  * `released`
+  * `hidden`
+  * `tags[]`
+
+##### Blogeintrag bearbeiten
+* Endpoint `PUT /blog/:id`
+* Authentifizierung
+  * Für nicht-öffentliche Blogeinträge muss der Request authentifiziert sein, oder es wird HTTP 401 zurückgegeben.
+* Parameter (alle Parameter sind optional, nicht angegebene Attribute werden nicht geändert):
+  * `title`
+  * `picture`
+  * `picture`
+  * `author`
+  * `about`
+  * `released`
+  * `hidden`
+  * `tags[]`
