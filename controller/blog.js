@@ -1,5 +1,6 @@
 var blog = require('../data/blog.json');
 var fs = require('fs');
+var ObjectID = require('mongodb').ObjectID;
 
 exports.list = function(req, res) {
   if (res.locals.authenticated) {
@@ -40,11 +41,8 @@ exports.create = function(req, res) {
     newIndex += 1;
   }
 
-  // TODO newId
-  var newId = 'DUMMY';
-
   var newBlogPost = {
-    _id     : newId,
+    _id     : new ObjectID(),
     index   : newIndex,
     title   : req.body.title,
     picture : req.body.picture,
@@ -61,7 +59,7 @@ exports.create = function(req, res) {
     if (err) {
       res.status(500).json({error: err});
     } else {
-      res.status(201).json({index: newIndex, id: newId});
+      res.status(201).json({index: newIndex, id: newBlogPost._id});
     }
   });
 }
