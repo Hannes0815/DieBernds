@@ -18,7 +18,7 @@ Entweder mit [Postman](https://www.getpostman.com/), oder mit der PowerShell: `P
 ### Allgemein
 * Die einzelnen Endpoints werden mit dem Pfadpräfix `/api/V1` angesprochen.
 * Der Header `Content-Type` ist anzugeben wenn Parameter im Request Body übertragen werden. Parameter können als JSON (`application/json`) oder als Key/Value (`application/x-www-form-urlencoded`) übertragen werden.
-* Soll der Request authentifiiziert sein, muss das Token im Header `x-bernd-token` angegeben werden. Das Token wird über den Endpunkt `/login` geliefert.
+* Soll der Request authentifiziert sein, muss das Token im Header `x-bernd-token` angegeben werden. Das Token wird über den Endpunkt `/login` geliefert.
 
 ### Endpoints
 
