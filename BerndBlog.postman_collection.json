@@ -1,0 +1,515 @@
+{
+	"variables": [],
+	"info": {
+		"name": "WebEngineering BerndBlog",
+		"_postman_id": "785029be-3c7d-3bab-d034-3476fde9994f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User/Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Token is returned\"] = jsonData.token !== null;",
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"postman.setGlobalVariable(\"bernd-token\", jsonData.token);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8082/api/V1/login",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "dhbwka_user",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "akm8990",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "User/PW Recovery",
+			"request": {
+				"url": "http://localhost:8082/api/V1/passwordRecovery",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					},
+					{
+						"key": "x-bernd-token",
+						"value": "{{bernd-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "newPassword",
+							"value": "kam8991",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "akm8990",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Blog/List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8082/api/V1/blog",
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-bernd-token",
+						"value": "{{bernd-token}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Blog/Show",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8082/api/V1/blog/0",
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-bernd-token",
+						"value": "{{bernd-token}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Blog/Show (unauthorized)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 401\"] = responseCode.code === 401;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8082/api/V1/blog/0",
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-bernd-token",
+						"value": "{{bernd-token}}",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Blog/Show (not existing)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8082/api/V1/blog/20",
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-bernd-token",
+						"value": "{{bernd-token}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Blog/Create (unauthorized)",
+			"request": {
+				"url": "http://localhost:8082/api/V1/blog",
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Blog/Create",
+			"request": {
+				"url": "http://localhost:8082/api/V1/blog",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					},
+					{
+						"key": "x-bernd-token",
+						"value": "{{bernd-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "Testeintrag",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "picture",
+							"value": "http://placehold.it/32x32",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "author",
+							"value": "Jan",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "about",
+							"value": "Lorem ipsum dolor sit amet",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "released",
+							"value": "2017-06-20T23:24:00 +02:00",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "hidden",
+							"value": "false",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "tags[]",
+							"value": "lorem",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "tags[]",
+							"value": "ipsum",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Blog/Update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Title is changed\"] = jsonData.title === \"Testeintrag\";",
+							"tests[\"Author is unchanged\"] = jsonData.author === \"Rivera Gallagher\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8082/api/V1/blog/0",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-bernd-token",
+						"value": "{{bernd-token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "Testeintrag",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "tags[]",
+							"value": "asdf",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "tags[]",
+							"value": "qwer",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Blog/Update (unauthorized)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 401\"] = responseCode.code === 401;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8082/api/V1/blog/0",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-bernd-token",
+						"value": "{{bernd-token}}",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "Testeintrag",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Blog/Update (not existing)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8082/api/V1/blog/20",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-bernd-token",
+						"value": "{{bernd-token}}",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Blog/Delete (unauthorized)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 401\"] = responseCode.code === 401;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8082/api/V1/blog/0",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-bernd-token",
+						"value": "{{bernd-token}}",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Blog/Delete (not existing)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8082/api/V1/blog/20",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-bernd-token",
+						"value": "{{bernd-token}}",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Blog/Delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8082/api/V1/blog/0",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-bernd-token",
+						"value": "{{bernd-token}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

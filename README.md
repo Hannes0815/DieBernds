@@ -11,7 +11,10 @@ Repo für Web Engineering
  
 ### Testen
 
-Entweder mit [Postman](https://www.getpostman.com/), oder mit der PowerShell: `PS> curl http://localhost:8082/api/V1/<...>`
+Manuell mit der PowerShell: `PS> curl http://localhost:8082/api/V1/<...>`
+
+Oder mit [Postman](https://www.getpostman.com/) und der passenden [Collection](https://raw.githubusercontent.com/PalatinCoder/DieBernds/master/BerndBlog.postman_collection.json) zum Importieren. Die Collection enthält alle beschriebenen Szenarien für alle Endpunkte.
+
 
 ## API Dokumentation
 
